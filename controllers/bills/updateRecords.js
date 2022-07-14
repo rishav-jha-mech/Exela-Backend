@@ -1,4 +1,5 @@
 const Bill = require('../../models/electricityBillSchema')
+const { validationResult } = require('express-validator')
 
 const updateBill = async (req, res) => {
     if (!req.body) {
@@ -6,9 +7,13 @@ const updateBill = async (req, res) => {
             message: "Data to update can not be empty!"
         });
     }
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ message: errors });
+    }
 
     const id = req.params.id;
-    
     await Bill.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {
