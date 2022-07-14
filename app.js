@@ -7,7 +7,7 @@ const billsRouter = require('./routes/billsRouter')
 
 
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: 'https://exela-ddy.pages.dev'
 }));
 
 app.use(express.urlencoded({extended : true}));
