@@ -2,10 +2,10 @@ const { db } = require('../../models/electricityBillSchema');
 const BillSchema = require('../../models/electricityBillSchema');
 
 const allRecords = async (req, res) => {
-    const { page = 1, limit = 2, sort = -1 } = req.query  //seting default value of page 1 and limit = 2 sort is either 1 or -1
-    await db.collection('Bills')
+    const { page = 1, limit = 10, sort = -1 } = req.query  //seting default value of page 1 and limit = 2 sort is either 1 or -1
+    await db.collection('bills')
             .find()
-            .sort('createdAt', sort)
+            .sort('bill_date', sort)
             .limit(limit * 1)
             .skip((page-1) * limit)
             .toArray()
