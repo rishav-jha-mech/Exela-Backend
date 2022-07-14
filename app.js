@@ -17,7 +17,7 @@ app.use(express.json());
 require('./db/conf');
 
 app.use(express.json());
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 3000
 
 
 app.use('/',billsRouter)
