@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const billsRouter = require('./routes/billsRouter')
+
 
 app.use(cors({
     origin: 'http://localhost:3000'
@@ -18,7 +20,9 @@ app.use(express.json());
 const PORT = process.env.PORT || 4000
 
 
-app.get('/',(req,res)=> res.send('Welcome To Exela API !'))
+app.use('/',billsRouter)
+
+
 
 
 app.listen(PORT,()=>{ console.log(`Hey there Hello from ${PORT}`)})
